@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Добавление сделки
+{% endblock %}
+{% block body %}
+
+<div class="container mt-5 mb-5">
+    <form class="form-inline" method="post">
+        {% for index in range(1,column_names|length) %}
+        <input type="text" name="{{column_names[index]}}_add" placeholder="{{column_names[index]}}" class="form-control mb-2 mr-sm-2">
+        {% endfor %}
+        <br>
+        <button type="submit" class="btn btn-outline-success">Добавить</button>
+        <a href="/database/{{name}}" class="btn btn-outline-primary">Вернуться</a>
+        <br><br>
+    </form>
+</div>
+{% endblock %}

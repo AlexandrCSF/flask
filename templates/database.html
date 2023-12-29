@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Список таблиц
+{% endblock %}
+{% block body %}
+<h1>List of tables</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Название таблицы</th>
+      <th>Кол-во записей</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%  for index in range(tables|length)  %}
+    <tr>
+      <th scope="row">{{index + 1}}</th>
+      <td><a href="/database/{{ tables[index][0] }}">{{tables[index][0]}}</a></td>
+      <td>{{tables[index][1]}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+

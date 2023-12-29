@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+
+{% block title %}
+База данных
+{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <form class="form-inline" method="post">
+        {% for column_name in column_names %}
+        <input type="text" name="{{column_name}}_filter" placeholder="Введите {{column_name}}"
+               class="form-control mb-2 mr-sm-2">
+        {% endfor %}
+        <br>
+        <button type="submit" class="btn btn-outline-success">Отфильтровать</button>
+        <br><br>
+    </form>
+
+    <a href="/database/{{name}}/add" class="btn btn-outline-success">Добавить запись</a>
+    <br><br>
+    <table class="table table-bordered">
+        <thead>
+
+        <tr class="table-info">
+            {% for column_name in column_names %}
+            <th>{{ column_name }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+        <tr>
+            {% for index in range(row|length) %}
+            <td>{{ row[index] }}</td>
+            {% endfor %}
+            <td><a href="{{ request.url }}/edit/{{row[0]}}">Edit</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

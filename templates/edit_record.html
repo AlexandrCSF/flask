@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Редактирование сделки
+{% endblock %}
+{% block body %}
+
+<div class="container mt-5 mb-5">
+    <form class="form-inline" method="post">
+        {% for index in range(1,data|length) %}
+        <input type="text" name="{{column_names[index]}}_edit" placeholder="{{column_names[index]}}" value="{{data[index]}}"
+               class="form-control mb-2 mr-sm-2">
+        {% endfor %}
+        <br>
+        <input type="hidden" name="action" id="action" value="">
+        <button type="submit" class="btn btn-outline-success" onclick="setAction('edit')">Изменить</button>
+        <a href="/database/{{name}}" class="btn btn-outline-primary">Вернуться</a>
+        <button href="/database/{{name}}" class="btn btn-outline-danger" onclick="setAction('delete')">Удалить запись</button>
+        <br><br>
+
+    </form>
+</div>
+<script>
+    function setAction(actionValue) {
+        document.getElementById('action').value = actionValue;
+    }
+</script>
+{% endblock %}
